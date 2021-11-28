@@ -5,14 +5,8 @@
 </p>
 
 <br>
+<h4><strong>• Projeto atualizado para o React-Router V6 (originalmente em V5)</strong></h4>
 <br>
 
-<h2>Tecnologias utilizadas:</h2>
-<ul>
-    <li>ReactJS</li>
-    <li>TypeScript</li>
-    <li>SCSS</li>
-    <li>React Router</li>
-    <li>Firebase</li>
-</ul>
+<p align=center><img src="src/assets/images/used-tech.png"></p>
 
