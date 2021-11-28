@@ -1,6 +1,7 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import { Question } from '../components/Question';
 import { database } from '../services/firebase';
 
 
@@ -94,7 +95,9 @@ export function Room() {
         <div id="page-room">
             <header>
                 <div className="content">
-                    <img src={logoImg} alt="letmeask" />
+                    <a href="/">
+                        <img src={logoImg} alt="letmeask" />
+                    </a>
                     <RoomCode code={roomId}/>
                 </div>
             </header>
@@ -128,7 +131,15 @@ export function Room() {
                     </div>
                 </form>
 
-                {JSON.stringify(questions)}
+                {questions.map(question => {
+                    return (
+                        <Question
+                            key={question.id}
+                            author={question.author}
+                            content={question.content}
+                        />
+                    )
+                })}
             </main>
         </div>
     )

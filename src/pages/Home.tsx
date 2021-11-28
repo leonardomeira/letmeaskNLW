@@ -1,7 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import toast, { Toaster } from 'react-hot-toast';
 import { Button } from '../components/Button';
 
 import IllustrationImg from '../assets/images/illustration.svg';
@@ -26,7 +25,7 @@ export function Home() {
     async function handleJoinRoom(event: FormEvent) {
         event.preventDefault();
 
-        if (roomCode.trim() == '') {
+        if (roomCode.trim() === '') {
             return;
         }
 
@@ -50,11 +49,22 @@ export function Home() {
             <main>
                 <div className="main-content">
                     <img src={logoImg} alt="Letmeask" />
-                    <button onClick={handleCreateRoom} className="create-room">
-                        <img src={googleIconImg} />
-                        Cria sua conta com o Google
-                    </button>
-                    <div className="separator">ou entre em uma sala</div>
+
+                    {!user ?
+                        <div className="unauthenticated">
+                            <button onClick={handleCreateRoom} className="create-room">
+                                <img src={googleIconImg} alt="Google Auth"/>
+                                Crie sua conta com o Google
+                            </button>
+                            <div className="separator">ou entre em uma sala</div>
+                        </div>
+                    :
+                        <div className="authenticated">
+                            <h2>Olá, {user.name}.</h2>
+                            <div className="separator">Entre em uma sala</div>
+                        </div>
+                    }
+                    
                     <form>
                         <input
                             type="text"
